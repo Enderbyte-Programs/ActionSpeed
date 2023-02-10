@@ -1,9 +1,12 @@
 main: enderbyteprograms.actionspeed.ActionSpeedMain
 name: ActionSpeed
-version: 1.0
+version: 1.0.1
 api-version: 1.19
 commands:
   speedometer:
     description: Toggle the Actionbar Speedometer
     permission: actionspeed.speedometer
     usage: /speedometer
+    aliases:
+      - actionspeed
+      - as

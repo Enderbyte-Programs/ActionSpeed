@@ -16,7 +16,7 @@ import java.util.List;
 public class EventManager implements Listener {
     @EventHandler
     public void onPlayerLeave (PlayerQuitEvent event) {
-        ActionSpeedData.active.remove(event.getPlayer().getDisplayName());
+        ActionSpeedData.active.remove(event.getPlayer().getDisplayName());//Don't send data to an offline player
     }
     @EventHandler
     public void onMove(PlayerMoveEvent event) {

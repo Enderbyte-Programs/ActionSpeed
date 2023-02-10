@@ -16,10 +16,10 @@ public class Speedometer implements CommandExecutor {
             Player p = (Player)commandSender;
             if (ActionSpeedData.inlist(p)) {
                 ActionSpeedData.active.remove(p.getDisplayName());
-                commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now hidden");
+                commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now disabled");
             } else {
                 ActionSpeedData.active.add(p.getDisplayName());
-                commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now showen");
+                commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now enabled");
             }
             return true;
         } else {
