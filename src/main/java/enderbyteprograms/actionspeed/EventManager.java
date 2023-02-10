@@ -31,7 +31,7 @@ public class EventManager implements Listener {
         if (!ActionSpeedData.inlist(event.getPlayer())) {
             return;
         }
-        event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Speed: "+Utilities.round(dist*20,1)+" m/s"));
+        event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Utilities.speedColour(dist*20)+"Speed: "+Utilities.round(dist*20,1)+" m/s"));
     }
     @EventHandler
     public void onvmove(VehicleMoveEvent event) {
@@ -42,7 +42,7 @@ public class EventManager implements Listener {
                 if (!ActionSpeedData.inlist((Player)e)) {
                     return;
                 }
-                ((Player)e).spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText("Speed: "+Utilities.round(dist*20,1)+" m/s"));
+                ((Player)e).spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20)+"Speed: "+Utilities.round(dist*20,1)+" m/s"));
             }
         }
 

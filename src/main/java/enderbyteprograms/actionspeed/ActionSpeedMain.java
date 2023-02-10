@@ -4,8 +4,10 @@ import enderbyteprograms.actionspeed.commands.Speedometer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ActionSpeedMain extends JavaPlugin {
+    public static ActionSpeedMain INSTANCE;
     @Override
     public void onEnable() {
+        INSTANCE = this;
         this.getCommand("speedometer").setExecutor(new Speedometer());
         this.getServer().getPluginManager().registerEvents(new EventManager(),this);
         getLogger().info("ActionSpeed is ready");

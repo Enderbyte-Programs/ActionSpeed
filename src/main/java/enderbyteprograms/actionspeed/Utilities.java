@@ -1,6 +1,7 @@
 package enderbyteprograms.actionspeed;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 public class Utilities {
     public static boolean playeronline(String name) {
@@ -16,5 +17,17 @@ public class Utilities {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+    public static ChatColor speedColour (double invalue) {
+        if (invalue < 5) {
+            return ChatColor.AQUA;
+        } else if (invalue > 4 && invalue < 20) {
+            return ChatColor.GREEN;
+        } else if (invalue > 19 && invalue < 50) {
+            return ChatColor.YELLOW;
+        } else if (invalue > 49) {
+            return ChatColor.RED;
+        }
+        return ChatColor.RESET;
     }
 }
