@@ -30,4 +30,16 @@ public class Utilities {
         }
         return ChatColor.RESET;
     }
+    public static double convertspeed(int converter,double m_s) {
+        //converter int, 0: m/s 1: km/h 2: mi/h
+        if (converter == 0) {
+            return m_s;
+        } else if (converter == 1) {
+            return m_s * 3;
+        } else if (converter == 2) {
+            return m_s * 2.237;
+        } else {
+            return m_s;
+        }
+    }
 }
