@@ -30,6 +30,21 @@ public class Utilities {
         }
         return ChatColor.RESET;
     }
+    public static ChatColor speedColour (double invalue,PlayerData dat) {
+        if (!dat.allowcolour) {
+            return ChatColor.WHITE;
+        }
+        if (invalue < 5) {
+            return ChatColor.AQUA;
+        } else if (invalue > 4 && invalue < 20) {
+            return ChatColor.GREEN;
+        } else if (invalue > 19 && invalue < 50) {
+            return ChatColor.YELLOW;
+        } else if (invalue > 49) {
+            return ChatColor.RED;
+        }
+        return ChatColor.RESET;
+    }
     public static double convertspeed(int converter,double m_s) {
         //converter int, 0: m/s 1: km/h 2: mi/h
         if (converter == 0) {

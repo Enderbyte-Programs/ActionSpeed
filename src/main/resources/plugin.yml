@@ -16,7 +16,7 @@ permissions:
       actionspeed.speedometer: true
       actionspeed.admin: true
   actionspeed.speedometer:
-    description: Allows personal enabling and disabling of speedometer
+    description: Allows personal enabling and disabling of speedometer as well as modification of personal speedometer
     default: true
   actionspeed.admin:
     description: Allows force shutdown and re-starting ActionSpeed

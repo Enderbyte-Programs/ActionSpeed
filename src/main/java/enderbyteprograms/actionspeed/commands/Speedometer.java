@@ -67,6 +67,10 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient permissions");
                 }
             } else if (strings[0].equals("setunits")) {
+                if (!commandSender.hasPermission("actionspeed.speedometer")) {
+                    commandSender.sendMessage(ChatColor.RED+"You lack permission to do this");
+                    return false;
+                }
                 try {
                     String pls = strings[1];
                 } catch (Exception e) {
@@ -98,6 +102,32 @@ public class Speedometer implements CommandExecutor {
                     ActionSpeedData.active.add(pd);
                     commandSender.sendMessage("Changed to mi/h");
                     return true;
+                }
+            }
+            else if (strings[0].equals("allowcolour")) {
+                if (!commandSender.hasPermission("actionspeed.speedometer")) {
+                    commandSender.sendMessage(ChatColor.RED + "You lack permission to do this");
+                    return false;
+                }
+                try {
+                    String __p = strings[1];
+                } catch (Exception e) {
+                    commandSender.sendMessage("Please provide \"yes\" or \"no\"");
+                    return false;
+                }
+                PlayerData pd = ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)commandSender).getDisplayName()));
+                if (strings[1].toLowerCase().equals("yes")) {
+                    pd.allowcolour = true;
+                    ActionSpeedData.DestroyPlayer(pd.username);
+                    ActionSpeedData.active.add(pd);
+                    commandSender.sendMessage(ChatColor.GREEN+"Enabled colour");
+                } else if (strings[1].toLowerCase().equals("no")) {
+                    pd.allowcolour = false;
+                    ActionSpeedData.DestroyPlayer(pd.username);
+                    ActionSpeedData.active.add(pd);
+                    commandSender.sendMessage(ChatColor.GREEN+"Disabled colour");
+                } else {
+                    commandSender.sendMessage(ChatColor.RED+"Please use either yes or no");
                 }
             }
         }

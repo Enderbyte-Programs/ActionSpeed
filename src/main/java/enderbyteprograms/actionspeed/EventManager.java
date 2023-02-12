@@ -16,10 +16,6 @@ import java.util.List;
 
 public class EventManager implements Listener {
     @EventHandler
-    public void onPlayerLeave (PlayerQuitEvent event) {
-
-    }
-    @EventHandler
     public void onPlayerJoin (PlayerJoinEvent event) {
         if (!ActionSpeedData.inlist(event.getPlayer()))
         {ActionSpeedData.active.add(new PlayerData(event.getPlayer().getDisplayName()));}
@@ -41,7 +37,7 @@ public class EventManager implements Listener {
             return;
         }
         double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())).unit,dist);
-        event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20)+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata((event.getPlayer().getDisplayName()))).unitstr));
+        event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20,ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())))+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata((event.getPlayer().getDisplayName()))).unitstr));
     }
     @EventHandler
     public void onvmove(VehicleMoveEvent event) {
@@ -56,7 +52,7 @@ public class EventManager implements Listener {
                     return;
                 }
                 double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).unit,dist);
-                ((Player)e).spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20)+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).unitstr));
+                ((Player)e).spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20,ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())))+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).unitstr));
             }
         }
 
