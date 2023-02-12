@@ -1,6 +1,6 @@
 main: enderbyteprograms.actionspeed.ActionSpeedMain
 name: ActionSpeed
-version: 1.2
+version: 1.2.1
 api-version: 1.19
 commands:
   speedometer:
@@ -19,5 +19,5 @@ permissions:
     description: Allows personal enabling and disabling of speedometer as well as modification of personal speedometer
     default: true
   actionspeed.admin:
-    description: Allows force shutdown and re-starting ActionSpeed
+    description: Allows force shutdown and re-starting ActionSpeed as well as viewing of data
     default: op

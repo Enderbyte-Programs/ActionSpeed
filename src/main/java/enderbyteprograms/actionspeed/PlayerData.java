@@ -16,6 +16,12 @@ public class PlayerData {
             unitstr = "km/h";
         } else if (unit==2) {
             unitstr = "mi/h";
+        } else if (unit==3) {
+            unitstr = "m/min";
+        } else if (unit==4) {
+            unitstr = "ft/s";
+        } else if (unit == 5) {
+            unitstr = "mi/min";
         }
     }
 }

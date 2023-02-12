@@ -15,7 +15,7 @@ public class Speedometer implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 0) {
-            commandSender.sendMessage("ActionSpeed Plugin v1.2");
+            commandSender.sendMessage("ActionSpeed Plugin v"+ActionSpeedData.version);
         } else {
             if (strings[0].equals("toggle")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {
@@ -37,7 +37,7 @@ public class Speedometer implements CommandExecutor {
                         ntp.active = !ntp.active;
                         ActionSpeedData.active.add(ntp);
 
-                        commandSender.sendMessage(ChatColor.GREEN+"Speedometer is toggled");
+                        commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now set to: "+ntp.active);
                     } else {
 
                         commandSender.sendMessage(ChatColor.RED + "Error");
@@ -102,6 +102,30 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage("Changed to mi/h");
                     return true;
                 }
+                else if (strings[1].equals("m/min")) {
+                    pd.unit = 3;
+                    ActionSpeedData.DestroyPlayer(pd.username);
+                    pd.UpdateUnits();
+                    ActionSpeedData.active.add(pd);
+                    commandSender.sendMessage("Changed to m/min");
+                    return true;
+                }
+                else if (strings[1].equals("ft/s")) {
+                    pd.unit = 4;
+                    ActionSpeedData.DestroyPlayer(pd.username);
+                    pd.UpdateUnits();
+                    ActionSpeedData.active.add(pd);
+                    commandSender.sendMessage("Changed to ft/s");
+                    return true;
+                }
+                else if (strings[1].equals("mi/min")) {
+                    pd.unit = 5;
+                    ActionSpeedData.DestroyPlayer(pd.username);
+                    pd.UpdateUnits();
+                    ActionSpeedData.active.add(pd);
+                    commandSender.sendMessage("Changed to mi/min");
+                    return true;
+                }
             }
             else if (strings[0].equals("allowcolour")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {
@@ -127,7 +151,23 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage(ChatColor.GREEN+"Disabled colour");
                 } else {
                     commandSender.sendMessage(ChatColor.RED+"Please use either yes or no");
+                    return false;
                 }
+            }else if (strings[0].equals("dumpdata")) {
+                if (!commandSender.hasPermission("actionspeed.admin")) {
+                    commandSender.sendMessage(ChatColor.RED + "You lack permission to do this");
+                    return false;
+                }
+                commandSender.sendMessage(ChatColor.LIGHT_PURPLE+"ActionSpeed Data Dump");
+                commandSender.sendMessage("Datalist length: "+ActionSpeedData.active.size());
+                for (PlayerData p:ActionSpeedData.active) {
+                    commandSender.sendMessage(p.username);
+                    commandSender.sendMessage("    unitstr="+p.unitstr);
+                    commandSender.sendMessage("    unit="+p.unit);
+                    commandSender.sendMessage("    allowcolour="+p.allowcolour);
+                    commandSender.sendMessage("    active="+p.active);
+                }
+
             }
         }
         return true;

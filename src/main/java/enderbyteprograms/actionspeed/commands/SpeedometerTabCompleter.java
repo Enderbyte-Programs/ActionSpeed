@@ -12,15 +12,15 @@ public class SpeedometerTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 0) {
-            return List.of(new String[]{"toggle","setunits","allowcolour","forceshutdown","restart"});
+            return List.of(new String[]{"toggle","setunits","allowcolour","forceshutdown","restart","dumpdata"});
         }
         else {
             if (Arrays.stream(strings).toList().contains("setunits")) {
-                return List.of(new String[]{"m/s","km/h","mi/h"});
+                return List.of(new String[]{"m/s","km/h","mi/h","m/min","ft/s","mi/min"});
             } else if (Arrays.stream(strings).toList().contains("allowcolour")) {
                 return List.of(new String[]{"yes","no"});
             } else {
-                return List.of(new String[]{"toggle","setunits","allowcolour","forceshutdown","restart"});
+                return List.of(new String[]{"toggle","setunits","allowcolour","forceshutdown","restart","dumpdata"});
             }
         }
     }

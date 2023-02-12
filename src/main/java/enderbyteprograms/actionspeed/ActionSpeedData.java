@@ -44,4 +44,5 @@ public class ActionSpeedData {
         }
         return -1;
     }
+    public static String version = "1.2.1";
 }

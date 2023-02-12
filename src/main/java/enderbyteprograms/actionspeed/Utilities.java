@@ -50,10 +50,17 @@ public class Utilities {
         if (converter == 0) {
             return m_s;
         } else if (converter == 1) {
-            return m_s * 3;
+            return m_s * (double)3;
         } else if (converter == 2) {
-            return m_s * 2.237;
-        } else {
+            return m_s * (double)2.237;
+        } else if (converter == 3) {
+            return m_s * (double)60;
+        } else if (converter == 4) {
+            return m_s * 3.28084;
+        } else if (converter == 5) {
+            return m_s * 0.037;
+        }
+        else {
             return m_s;
         }
     }
