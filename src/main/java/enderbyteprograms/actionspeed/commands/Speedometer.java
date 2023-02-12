@@ -77,7 +77,6 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage("Please provide unit");
                     return false;
                 }
-                commandSender.sendMessage(strings[1]);
                 PlayerData pd = ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)commandSender).getDisplayName()));
                 if (strings[1].equals("m/s")) {
                     pd.unit = 0;

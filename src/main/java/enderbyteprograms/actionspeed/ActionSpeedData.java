@@ -1,6 +1,4 @@
 package enderbyteprograms.actionspeed;
-
-import enderbyteprograms.actionspeed.files.ConfigFile;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -46,6 +44,4 @@ public class ActionSpeedData {
         }
         return -1;
     }
-    public static ConfigFile fmake = new ConfigFile("asconfig.txt");
-    public static HashMap<String,Object> CONFIG = new HashMap<String,Object>();
 }

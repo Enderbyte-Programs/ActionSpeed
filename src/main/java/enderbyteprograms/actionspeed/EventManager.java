@@ -31,7 +31,7 @@ public class EventManager implements Listener {
             //Improve performance
         }
         if (!ActionSpeedData.inlist(event.getPlayer())) {
-            return;
+            ActionSpeedData.active.add(new PlayerData(event.getPlayer().getDisplayName()));//Add to list if not found
         }
         if (!ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())).active) {
             return;
@@ -46,7 +46,7 @@ public class EventManager implements Listener {
         for (Entity e:le) {
             if (e instanceof Player) {
                 if (!ActionSpeedData.inlist((Player)e)) {
-                    return;
+                    ActionSpeedData.active.add(new PlayerData(((Player)e).getDisplayName()));
                 }
                 if (!ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).active) {
                     return;
