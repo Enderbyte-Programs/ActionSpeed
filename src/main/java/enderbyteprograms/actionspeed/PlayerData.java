@@ -1,11 +1,16 @@
 package enderbyteprograms.actionspeed;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerData {
     public String username;
     public int unit = 0;
     public String unitstr = "m/s";
     public boolean allowcolour = true;
     public boolean active = false;
+    public double topspeed = 0;
+    public boolean showtopspeed = false;
     public PlayerData(String name) {
         username = name;
     }
@@ -22,6 +27,8 @@ public class PlayerData {
             unitstr = "ft/s";
         } else if (unit == 5) {
             unitstr = "mi/min";
+        } else if (unit == 6) {
+            unitstr = "kt";
         }
     }
 }

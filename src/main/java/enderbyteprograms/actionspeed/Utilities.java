@@ -59,6 +59,8 @@ public class Utilities {
             return m_s * 3.28084;
         } else if (converter == 5) {
             return m_s * 0.037;
+        } else if (converter == 6) {
+            return m_s * 1.94;
         }
         else {
             return m_s;

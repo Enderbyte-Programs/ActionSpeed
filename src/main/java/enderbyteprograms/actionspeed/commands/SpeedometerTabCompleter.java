@@ -16,8 +16,8 @@ public class SpeedometerTabCompleter implements TabCompleter {
         }
         else {
             if (Arrays.stream(strings).toList().contains("setunits")) {
-                return List.of(new String[]{"m/s","km/h","mi/h","m/min","ft/s","mi/min"});
-            } else if (Arrays.stream(strings).toList().contains("allowcolour")) {
+                return List.of(new String[]{"m/s","km/h","mi/h","m/min","ft/s","mi/min","knots"});
+            } else if (Arrays.stream(strings).toList().contains("allowcolour") || Arrays.stream(strings).toList().contains("showzero")) {
                 return List.of(new String[]{"yes","no"});
             } else {
                 return List.of(new String[]{"toggle","setunits","allowcolour","forceshutdown","restart","dumpdata"});

@@ -30,6 +30,7 @@ public class EventManager implements Listener {
             return;
             //Improve performance
         }
+
         if (!ActionSpeedData.inlist(event.getPlayer())) {
             ActionSpeedData.active.add(new PlayerData(event.getPlayer().getDisplayName()));//Add to list if not found
         }
