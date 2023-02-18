@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ActionSpeedData {
     public static List<PlayerData> active = new ArrayList<PlayerData>();
+    public static boolean isregistered = false;
     public static boolean inlist(Player pl) {
         for (PlayerData p:active) {
             if (p.username.equals(pl.getDisplayName())) {

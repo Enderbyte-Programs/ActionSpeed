@@ -52,7 +52,7 @@ public class Speedometer implements CommandExecutor {
                 if (commandSender.hasPermission("actionspeed.admin")) {
                     //Unregister
                     HandlerList.unregisterAll(ActionSpeedMain.LISTENER);
-
+                    ActionSpeedData.isregistered = false;
                     commandSender.sendMessage(ChatColor.GREEN+"EventManager and Speedometer disabled.");
                 }
                 else {
@@ -62,6 +62,7 @@ public class Speedometer implements CommandExecutor {
             else if (strings[0].equals("restart")) {
                 if (commandSender.hasPermission("actionspeed.admin")) {
                     ActionSpeedMain.INSTANCE.getServer().getPluginManager().registerEvents(ActionSpeedMain.LISTENER,ActionSpeedMain.INSTANCE);
+                    ActionSpeedData.isregistered = true;
                     commandSender.sendMessage(ChatColor.GREEN+"Actionspeed is now ready");
                 }else {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient permissions");
@@ -167,6 +168,7 @@ public class Speedometer implements CommandExecutor {
                 }
                 commandSender.sendMessage(ChatColor.LIGHT_PURPLE+"ActionSpeed Data Dump");
                 commandSender.sendMessage("Datalist length: "+ActionSpeedData.active.size());
+                commandSender.sendMessage("enabled="+ActionSpeedData.isregistered);
                 for (PlayerData p:ActionSpeedData.active) {
                     commandSender.sendMessage(p.username);
                     commandSender.sendMessage("    unitstr="+p.unitstr);

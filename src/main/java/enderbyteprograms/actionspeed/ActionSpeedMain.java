@@ -15,7 +15,7 @@ public class ActionSpeedMain extends JavaPlugin {
         this.getCommand("speedometer").setTabCompleter(new SpeedometerTabCompleter());
         LISTENER = new EventManager();
         this.getServer().getPluginManager().registerEvents(LISTENER,this);
-
+        ActionSpeedData.isregistered = true;
         getLogger().info("ActionSpeed is ready");
     }
     @Override
