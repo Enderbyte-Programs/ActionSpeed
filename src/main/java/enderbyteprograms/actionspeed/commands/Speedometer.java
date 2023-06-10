@@ -74,6 +74,7 @@ public class Speedometer implements CommandExecutor {
                 if (commandSender.hasPermission("actionspeed.admin")) {
                     if (ActionSpeedData.isregistered) {
                         commandSender.sendMessage(ChatColor.YELLOW+"Listener is already registered");
+                        return false;
                     }
                     ActionSpeedMain.INSTANCE.getServer().getPluginManager().registerEvents(ActionSpeedMain.LISTENER,ActionSpeedMain.INSTANCE);
                     ActionSpeedData.isregistered = true;
