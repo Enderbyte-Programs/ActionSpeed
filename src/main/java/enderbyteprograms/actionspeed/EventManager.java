@@ -42,20 +42,28 @@ public class EventManager implements Listener {
     }
     @EventHandler
     public void onvmove(VehicleMoveEvent event) {
-        List<Entity> le = event.getVehicle().getPassengers();
-        double dist = event.getFrom().distance(event.getTo());
-        for (Entity e:le) {
-            if (e instanceof Player) {
-                if (!ActionSpeedData.inlist((Player)e)) {
-                    ActionSpeedData.active.add(new PlayerData(((Player)e).getDisplayName()));
+        if (ActionSpeedMain.CONFIG.getBoolean("runinvehicles")) {
+            List<Entity> le = event.getVehicle().getPassengers();
+            double dist = event.getFrom().distance(event.getTo());
+            for (Entity e : le) {
+                if (e instanceof Player) {
+                    if (!ActionSpeedData.inlist((Player) e)) {
+                        ActionSpeedData.active.add(new PlayerData(((Player) e).getDisplayName()));
+                    }
+                    if (!ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player) e).getDisplayName())).active) {
+                        return;
+                    }
+                    double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player) e).getDisplayName())).unit, dist);
+                    ((Player) e).spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Utilities.speedColour(dist * 20, ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player) e).getDisplayName()))) + "Speed: " + Utilities.round(ndist * 20, 1) + " " + ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player) e).getDisplayName())).unitstr));
                 }
-                if (!ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).active) {
-                    return;
-                }
-                double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).unit,dist);
-                ((Player)e).spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20,ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())))+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)e).getDisplayName())).unitstr));
             }
         }
 
+    }
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent event) {
+        if (ActionSpeedMain.CONFIG.getBoolean("destroyplayerdataonleave")) {
+            ActionSpeedData.DestroyPlayer(event.getPlayer().getDisplayName());
+        }
     }
 }

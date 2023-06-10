@@ -59,8 +59,22 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient permissions");
                 }
             }
+            else if (strings[0].equals("reload")) {
+                if (commandSender.hasPermission("actionspeed.admin")) {
+                    ActionSpeedMain.INSTANCE.reloadConfig();
+                    ActionSpeedMain.CONFIG = ActionSpeedMain.INSTANCE.getConfig();
+                    commandSender.sendMessage(ActionSpeedMain.INSTANCE.getConfig().saveToString());
+                    commandSender.sendMessage(ChatColor.GREEN+"Configuration reloaded");
+                }
+                else {
+                    commandSender.sendMessage(ChatColor.RED+"Insufficient permissions");
+                }
+            }
             else if (strings[0].equals("restart")) {
                 if (commandSender.hasPermission("actionspeed.admin")) {
+                    if (ActionSpeedData.isregistered) {
+                        commandSender.sendMessage(ChatColor.YELLOW+"Listener is already registered");
+                    }
                     ActionSpeedMain.INSTANCE.getServer().getPluginManager().registerEvents(ActionSpeedMain.LISTENER,ActionSpeedMain.INSTANCE);
                     ActionSpeedData.isregistered = true;
                     commandSender.sendMessage(ChatColor.GREEN+"Actionspeed is now ready");

@@ -1,6 +1,7 @@
 package enderbyteprograms.actionspeed;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PlayerData {
@@ -30,5 +31,13 @@ public class PlayerData {
         } else if (unit == 6) {
             unitstr = "kt";
         }
+    }
+    public HashMap<String,String> ToYML() {
+        HashMap<String,String> result = new HashMap<String,String>();
+        result.put("name",this.username);
+        result.put("unit",String.valueOf(unit));
+        result.put("unitstr",unitstr);
+        result.put("active",String.valueOf(active));
+        return result;
     }
 }
