@@ -15,7 +15,7 @@ public class Speedometer implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 0) {
-            commandSender.sendMessage("ActionSpeed Plugin v"+ActionSpeedData.version);
+            commandSender.sendMessage("ActionSpeed Plugin by Enderbyte Programs v"+ActionSpeedData.version);
         } else {
             if (strings[0].equals("toggle")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {

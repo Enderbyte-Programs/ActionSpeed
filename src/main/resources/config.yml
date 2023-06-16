@@ -1,2 +1,9 @@
 runinvehicles: true # Calculate speed when player is in a vehicle. Disabling this MAY improve performance if you are having problems
 destroyplayerdataonleave: false #Delete a player's customization settings when they leave
+
+### DATA STORAGE BEGINS HERE. PLEASE DO NOT MODIFY ANY OF THE BELOW DATA
+
+players:
+  .placeholder: null
+nplayers:
+  -.placeholder: null
