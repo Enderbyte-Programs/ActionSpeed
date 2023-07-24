@@ -1,6 +1,6 @@
 main: enderbyteprograms.actionspeed.ActionSpeedMain
 name: ActionSpeed
-version: 1.4
+version: 1.4.1
 api-version: 1.18
 commands:
   speedometer:
