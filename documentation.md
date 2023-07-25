@@ -1,5 +1,5 @@
 # ActionSpeed Documentation
-For version 1.4.1
+For version 1.4.x
 
 ## Installing the plugin
 
@@ -49,3 +49,6 @@ Meant for admins only. Physically disables plugin by shutting off Event Listener
 
 ### /as restart
 Meant for admins only. Re-registers the Listener after it has been shut down.
+
+### A Notice about BSTATS
+This plugin uses Bstats for analytical purposes. If you wish to opt out of this (please don't), please read bstats documentation.
