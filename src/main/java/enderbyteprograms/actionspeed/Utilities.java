@@ -3,6 +3,9 @@ package enderbyteprograms.actionspeed;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilities {
     public static boolean playeronline(String name) {
         if (Bukkit.getServer().getPlayer(name) != null && Bukkit.getServer().getPlayer(name).getDisplayName().equalsIgnoreCase(name)){
@@ -17,6 +20,15 @@ public class Utilities {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+    public static List<String> comp_startswith(List<String> input, String phrase) {
+        List<String> result = new ArrayList<String>();
+        for (String p:input) {
+            if (p.startsWith(phrase) || phrase.replace(" ","").equals("")) {
+                result.add(p);
+            }
+        }
+        return result;
     }
     public static ChatColor speedColour (double invalue) {
         if (invalue < 5) {

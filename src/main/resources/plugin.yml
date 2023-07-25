@@ -1,7 +1,7 @@
 main: enderbyteprograms.actionspeed.ActionSpeedMain
 name: ActionSpeed
-version: 1.4.1
-api-version: 1.18
+version: 1.4.3
+api-version: 1.16
 commands:
   speedometer:
     description: Actionbar Speedometer command
