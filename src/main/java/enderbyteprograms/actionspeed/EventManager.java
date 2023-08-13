@@ -33,6 +33,7 @@ public class EventManager implements Listener {
             return;
             //Improve performance
         }
+
         double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())).unit,dist);
         event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20,ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())))+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata((event.getPlayer().getDisplayName()))).unitstr));
     }

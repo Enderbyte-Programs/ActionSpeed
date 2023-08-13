@@ -4,9 +4,7 @@ import enderbyteprograms.actionspeed.commands.Speedometer;
 import enderbyteprograms.actionspeed.commands.SpeedometerTabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import enderbyteprograms.actionspeed.bstats.Metrics;
 import java.util.List;
 
 public class ActionSpeedMain extends JavaPlugin {
@@ -26,6 +24,9 @@ public class ActionSpeedMain extends JavaPlugin {
         this.saveDefaultConfig(); //APparently this won't overwrite again
         CONFIG = this.getConfig();//Reduce load on Event calls NOTE: Directly call config on write operations
         ReadPlayerData();
+        int pluginid = 19237;
+        Metrics metrics = new Metrics(this, pluginid);
+
         getLogger().info("ActionSpeed is ready");
     }
     @Override

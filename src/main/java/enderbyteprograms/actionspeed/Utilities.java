@@ -2,17 +2,14 @@ package enderbyteprograms.actionspeed;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utilities {
-    public static boolean playeronline(String name) {
-        if (Bukkit.getServer().getPlayer(name) != null && Bukkit.getServer().getPlayer(name).getDisplayName().equalsIgnoreCase(name)){
-            return true;
-        }
-        return false;
-    }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -30,17 +27,26 @@ public class Utilities {
         }
         return result;
     }
-    public static ChatColor speedColour (double invalue) {
-        if (invalue < 5) {
-            return ChatColor.AQUA;
-        } else if (invalue > 4 && invalue < 20) {
-            return ChatColor.GREEN;
-        } else if (invalue > 19 && invalue < 50) {
-            return ChatColor.YELLOW;
-        } else if (invalue > 49) {
-            return ChatColor.RED;
+    public static Player GetPL(String[] strings) {
+        List<Player> players = new ArrayList<Player>(ActionSpeedMain.INSTANCE.getServer().getOnlinePlayers());
+        List<String> names = new ArrayList<String>();
+        for (Player p: players) {
+            names.add(p.getDisplayName());
         }
-        return ChatColor.RESET;
+         if (!names.contains(strings[strings.length-1])) {
+             return null;
+         } else {
+             return players.get(names.indexOf(strings[strings.length-1]));
+         }
+    }
+    public static boolean commandendsinplayer(String[] strings) {
+        List<Player> players = new ArrayList<Player>(ActionSpeedMain.INSTANCE.getServer().getOnlinePlayers());
+        List<String> names = new ArrayList<String>();
+        for (Player p: players) {
+            names.add(p.getDisplayName());
+        }
+        return names.contains(strings[strings.length-1]);
+
     }
     public static ChatColor speedColour (double invalue,PlayerData dat) {
         if (!dat.allowcolour) {

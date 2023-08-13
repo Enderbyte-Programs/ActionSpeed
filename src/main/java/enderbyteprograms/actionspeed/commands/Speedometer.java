@@ -3,6 +3,7 @@ package enderbyteprograms.actionspeed.commands;
 import enderbyteprograms.actionspeed.ActionSpeedData;
 import enderbyteprograms.actionspeed.ActionSpeedMain;
 import enderbyteprograms.actionspeed.PlayerData;
+import enderbyteprograms.actionspeed.Utilities;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,14 +18,80 @@ public class Speedometer implements CommandExecutor {
         if (strings.length == 0) {
             commandSender.sendMessage("ActionSpeed Plugin by Enderbyte Programs v"+ActionSpeedData.version);
         } else {
-            if (strings[0].equals("toggle")) {
+            if (strings[0].equals("enable")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient Permission");
                     return false;
                 }
-                if (commandSender instanceof Player) {
+                //Do stuff
+                Player p;
+                if (!Utilities.commandendsinplayer(strings))
+                {
+                    if (commandSender instanceof Player) {
+                        p = (Player) commandSender;
+                    } else {
+                        commandSender.sendMessage(ChatColor.RED+"Please specify a player name");
+                        return false;
+                    }
+
+                } else  {
+                    p = Utilities.GetPL(strings);
+                    if ( commandSender instanceof  Player) {
+                        if (! ((Player)(commandSender)).getDisplayName().equals(strings[strings.length-1])) {
+                            if (!commandSender.hasPermission("actionspeed.admin")) {
+                                commandSender.sendMessage(ChatColor.RED + "You lack the required permissions to edit someone else's speedometer");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                try {
+                    PlayerData ntp = ActionSpeedData.active.get(ActionSpeedData.getpdata(p.getDisplayName()));
+                } catch (IndexOutOfBoundsException e) {
+                    ActionSpeedData.active.add(new PlayerData(p.getDisplayName()));
+                }
+                PlayerData ntp = ActionSpeedData.active.get(ActionSpeedData.getpdata(p.getDisplayName()));
+                if (ActionSpeedData.inlist(p)) {
+
+                    ActionSpeedData.DestroyPlayer(p.getDisplayName());
+                    ntp.active = true;
+                    ActionSpeedData.active.add(ntp);
+
+                    commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now enabled for "+p.getDisplayName());
+                } else {
+
+                    commandSender.sendMessage(ChatColor.RED + "Error");
+                    return true;
+                }
+
+            }
+            else if (strings[0].equals("disable")) {
+                if (!commandSender.hasPermission("actionspeed.speedometer")) {
+                    commandSender.sendMessage(ChatColor.RED+"Insufficient Permission");
+                    return false;
+                }
                     //Do stuff
-                    Player p = (Player)commandSender;
+                    Player p;
+                    if (!Utilities.commandendsinplayer(strings))
+                    {
+                        if (commandSender instanceof Player) {
+                            p = (Player) commandSender;
+                        } else {
+                            commandSender.sendMessage(ChatColor.RED+"Please specify a player name");
+                            return false;
+                        }
+
+                    } else  {
+                        p = Utilities.GetPL(strings);
+                        if ( commandSender instanceof  Player) {
+                            if (! ((Player)(commandSender)).getDisplayName().equals(strings[strings.length-1])) {
+                                if (!commandSender.hasPermission("actionspeed.admin")) {
+                                    commandSender.sendMessage(ChatColor.RED + "You lack the required permissions to edit someone else's speedometer");
+                                    return false;
+                                }
+                            }
+                        }
+                    }
                     try {
                         PlayerData ntp = ActionSpeedData.active.get(ActionSpeedData.getpdata(p.getDisplayName()));
                     } catch (IndexOutOfBoundsException e) {
@@ -34,19 +101,16 @@ public class Speedometer implements CommandExecutor {
                     if (ActionSpeedData.inlist(p)) {
 
                         ActionSpeedData.DestroyPlayer(p.getDisplayName());
-                        ntp.active = !ntp.active;
+                        ntp.active = false;
                         ActionSpeedData.active.add(ntp);
 
-                        commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now set to: "+ntp.active);
+                        commandSender.sendMessage(ChatColor.GREEN+"Speedometer is now disabled for "+p.getDisplayName());
                     } else {
 
                         commandSender.sendMessage(ChatColor.RED + "Error");
                         return true;
                     }
-                } else {
-                    commandSender.sendMessage(ChatColor.RED+"Only players may execute this command");
-                    return false;
-                }
+
             }
             else if (strings[0].equals("forceshutdown")) {
                 if (commandSender.hasPermission("actionspeed.admin")) {
@@ -162,18 +226,18 @@ public class Speedometer implements CommandExecutor {
                     return false;
                 }
                 PlayerData pd = ActionSpeedData.active.get(ActionSpeedData.getpdata(((Player)commandSender).getDisplayName()));
-                if (strings[1].toLowerCase().equals("yes")) {
+                if (strings[1].toLowerCase().equals("yes") || strings[1].toLowerCase().equals("true")) {
                     pd.allowcolour = true;
                     ActionSpeedData.DestroyPlayer(pd.username);
                     ActionSpeedData.active.add(pd);
                     commandSender.sendMessage(ChatColor.GREEN+"Enabled colour");
-                } else if (strings[1].toLowerCase().equals("no")) {
+                } else if (strings[1].toLowerCase().equals("no") || strings[1].toLowerCase().equals("false")) {
                     pd.allowcolour = false;
                     ActionSpeedData.DestroyPlayer(pd.username);
                     ActionSpeedData.active.add(pd);
                     commandSender.sendMessage(ChatColor.GREEN+"Disabled colour");
                 } else {
-                    commandSender.sendMessage(ChatColor.RED+"Please use either yes or no");
+                    commandSender.sendMessage(ChatColor.RED+"That is not a valid argument.");
                     return false;
                 }
             }else if (strings[0].equals("dumpdata")) {

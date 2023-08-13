@@ -18,14 +18,6 @@ public class ActionSpeedData {
         }
         return false;
     }
-    public static boolean PlayerIsActive(String user) {
-        for (PlayerData p:active) {
-            if (p.username.equals(user) && p.active) {
-                return true;
-            }
-        }
-        return false;
-    }
     public static void DestroyPlayer(String user) {
         int ix = 0;
         int ir = 0;
@@ -47,5 +39,5 @@ public class ActionSpeedData {
         }
         return -1;
     }
-    public static String version = "1.4.3";
+    public static String version = "1.5.0";
 }
