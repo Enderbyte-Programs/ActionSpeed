@@ -1,9 +1,15 @@
 package enderbyteprograms.actionspeed;
+
+import org.bukkit.Location;
+
+import java.time.LocalDateTime;
+
 public class PlayerData {
     public String username;
     public int unit = 0;
     public String unitstr = "m/s";
     public boolean allowcolour = true;
+    public Location lastMoveLocation;//Purpose of this: If the user hasn't moved physically and
     public boolean active = false;
 
     public PlayerData(String name) {

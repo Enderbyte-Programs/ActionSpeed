@@ -27,7 +27,7 @@ public class ActionSpeedMain extends JavaPlugin {
         int pluginid = 19237;
         Metrics metrics = new Metrics(this, pluginid);
 
-        getLogger().info("ActionSpeed is ready");
+        getLogger().info("ActionSpeed by Enderbyte Programs (c) 2023-2024, some rights reserved. Plugin is now initialized.");
     }
     @Override
     public void onDisable() {

@@ -33,7 +33,17 @@ public class EventManager implements Listener {
             return;
             //Improve performance
         }
-
+        PlayerData px = ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName()));
+        if (px.lastMoveLocation == null) {
+            px.lastMoveLocation = to;//Catch and update on init
+        }
+        if (!px.lastMoveLocation.equals(to) && !px.lastMoveLocation.equals(prev)) {
+            //Detect and remove bug, The bug is that when exiting a vehicle the speedometer will read something like 10000 km/h which is ridiculous.
+            px.lastMoveLocation = to;
+            return;
+        }
+        px.lastMoveLocation = to;//Update
+        ActionSpeedData.active.set(ActionSpeedData.getpdata(event.getPlayer().getDisplayName()),px);//Update item in list
         double ndist = Utilities.convertspeed(ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())).unit,dist);
         event.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(Utilities.speedColour(dist*20,ActionSpeedData.active.get(ActionSpeedData.getpdata(event.getPlayer().getDisplayName())))+"Speed: "+Utilities.round(ndist*20,1)+" "+ActionSpeedData.active.get(ActionSpeedData.getpdata((event.getPlayer().getDisplayName()))).unitstr));
     }
