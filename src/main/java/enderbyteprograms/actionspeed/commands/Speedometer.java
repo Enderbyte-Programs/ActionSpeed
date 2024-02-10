@@ -17,8 +17,12 @@ public class Speedometer implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 0) {
             commandSender.sendMessage("ActionSpeed Plugin by Enderbyte Programs v"+ActionSpeedData.version);
+            Utilities.HelpMenu(commandSender);
         } else {
-            if (strings[0].equals("enable")) {
+            if (strings[0].equals("help")) {
+                Utilities.HelpMenu(commandSender);
+            }
+            else if (strings[0].equals("enable") || strings[0].equals("show")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient Permission");
                     return false;
@@ -65,7 +69,7 @@ public class Speedometer implements CommandExecutor {
                 }
 
             }
-            else if (strings[0].equals("disable")) {
+            else if (strings[0].equals("disable") || strings[0].equals("hide")) {
                 if (!commandSender.hasPermission("actionspeed.speedometer")) {
                     commandSender.sendMessage(ChatColor.RED+"Insufficient Permission");
                     return false;

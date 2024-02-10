@@ -16,10 +16,10 @@ import java.util.List;
 public class SpeedometerTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-        List<String> validplexc = Arrays.asList("enable","disable");
+        List<String> validplexc = Arrays.asList("enable","disable","show","hide");
         List<String> validplexc2 = Arrays.asList("setunits","allowcolour");
         if (strings.length == 1) {
-            List<String> nl =  Arrays.asList("enable","disable","setunits","allowcolour","forceshutdown","restart","dumpdata","reload");
+            List<String> nl =  Arrays.asList("enable","disable","setunits","allowcolour","forceshutdown","restart","dumpdata","reload","show","hide","help");
             return Utilities.comp_startswith(nl,strings[strings.length-1]);
         }
         else {

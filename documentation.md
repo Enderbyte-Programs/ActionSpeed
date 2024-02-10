@@ -1,5 +1,5 @@
 # ActionSpeed Documentation
-For version 1.4 or greater
+For version 1.4.x
 
 ## Installing the plugin
 

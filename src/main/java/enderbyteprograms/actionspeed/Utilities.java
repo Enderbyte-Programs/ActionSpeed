@@ -3,6 +3,7 @@ package enderbyteprograms.actionspeed;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -10,6 +11,30 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Utilities {
+    public static void HelpMenu(CommandSender sender) {
+        String nadhelp = ChatColor.AQUA+"Usage: as <command> [options]\n"+ChatColor.RESET +
+                "/as allowcolour <"+ChatColor.GREEN+"yes"+ChatColor.RESET+"|"+ChatColor.RED+"no"+ChatColor.RESET+">\n" +
+                "    Control if the speedometer will show colours\n" +
+                "/as disable|hide "+ChatColor.BLUE+"[player]"+ChatColor.RESET+"\n" +
+                "    Both of these do the same thing. They hide the speedometer\n" +
+                "/as enable|show "+ChatColor.BLUE+"[player]"+ChatColor.RESET+"\n" +
+                "    Both of these do the same thing. They show the speedometer\n" +
+                "/as setunits "+ChatColor.BLUE+"[unit]"+ChatColor.RESET+"\n" +
+                "    Set the units of your speedometer to [unit]. Refer to the tab completer.\n";
+        //adhelp is for admins
+        String adhelp = "/as dumpdata\n" +
+                "    Output all stored data, including player configurations\n" +
+                "/as forceshutdown\n" +
+                "    De-register event listeners and shutdown the plugin (useful in emergencies)\n" +
+                "/as restart\n" +
+                "    Restart the plugin after forceshutdown\n" +
+                "/as reload\n" +
+                "    Reload plugin configuration";
+        sender.sendMessage(nadhelp);
+        if (sender.hasPermission("actionspeed.admin")) {
+            sender.sendMessage(adhelp);
+        }
+    }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

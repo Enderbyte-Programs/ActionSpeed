@@ -23,7 +23,12 @@ public class ActionSpeedMain extends JavaPlugin {
         //Set up configs
         this.saveDefaultConfig(); //APparently this won't overwrite again
         CONFIG = this.getConfig();//Reduce load on Event calls NOTE: Directly call config on write operations
+        if (!CONFIG.contains("onbydefault")) {
+            this.getConfig().set("onbydefault",true);
+        }
+        if (!CONFIG.getBoolean("destroyplayerdataonleave")) {
         ReadPlayerData();
+        }
         int pluginid = 19237;
         Metrics metrics = new Metrics(this, pluginid);
 
