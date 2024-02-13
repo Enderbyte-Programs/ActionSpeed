@@ -22,8 +22,14 @@ Actionspeed has one command with aliases. The commands are `/actionspeed`, `/spe
 ### /as 
 Displays Plugin version information
 
-### /as toggle
-Toggle on and off the speedometer
+### /as enable (/as show)
+Show the speedometer
+
+### /as disable (/as hide)
+Hide the speedometer
+
+### /as help
+Display a help menu. The help menu will only show commands that you have permission to run.
 
 ### /as setunits (unitstr)
 Set the displayed speed unit to one of the listed units:
