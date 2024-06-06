@@ -9,6 +9,8 @@ Like all Minecraft plugins, paste the JAR file into the server plugin folder (SE
 
 As of version 1.4, there is a configuration file with two fields. You can find this file in `SERVER/plugins/ActionSpeed/config.yml`. The two nodes are `runinvehicles` and `destroyplayerdataonleave`. `runinvehicles` sets if the plugin is allowed to display speeds while in vehicles. Since OnVehicleMove may call more frequently than OnPlayerMove, disabling this may improve performance if you are having issues. `destroyplayerdataonleave` is defaulted to OFF. If set to TRUE, a player's speedometer settings will be deleted when they leave the game.
 
+In version 1.5.2, another configuration key was added: `onbydefault` (default TRUE). If enabled, new players will automatically have the speedometer enabled. 
+
 Configuration may be updated with `/as reload`
 
 ## Permissions
