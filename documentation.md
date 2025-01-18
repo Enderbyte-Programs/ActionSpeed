@@ -1,5 +1,5 @@
 # ActionSpeed Documentation
-For version 1.4.x
+For version 1.6 or newer
 
 ## Installing the plugin
 
@@ -7,7 +7,13 @@ Like all Minecraft plugins, paste the JAR file into the server plugin folder (SE
 
 ## Configuration
 
-As of version 1.4, there is a configuration file with two fields. You can find this file in `SERVER/plugins/ActionSpeed/config.yml`. The two nodes are `runinvehicles` and `destroyplayerdataonleave`. `runinvehicles` sets if the plugin is allowed to display speeds while in vehicles. Since OnVehicleMove may call more frequently than OnPlayerMove, disabling this may improve performance if you are having issues. `destroyplayerdataonleave` is defaulted to OFF. If set to TRUE, a player's speedometer settings will be deleted when they leave the game.
+The following configuration options are available in `plugins/ActionSpeed/config.yml`
+
+`destroydataonplayerleave` (default FALSE) - If set to true, will reset the player's configuration when they leave the server.
+
+`onbydefault` (default TRUE) - When enabled, new players will have their speedometer turned on immediately when they join.
+
+`showzeros` (default True) - When enabled, the plugin will broadcast "0" to the client when they are not moving. If it is set to false, no action bar message will be broadcast if the user is not moving.
 
 Configuration may be updated with `/as reload`
 
@@ -19,11 +25,17 @@ ActionSpeed has two permissions nodes: `actionspeed.speedometer` and `actionspee
 
 Actionspeed has one command with aliases. The commands are `/actionspeed`, `/speedometer`, and `/as`. Sub-commands of this are as follows: (the root command may be substitued for an alias)
 
-### /as 
+### /as
 Displays Plugin version information
 
-### /as toggle
-Toggle on and off the speedometer
+### /as enable (/as show)
+Show the speedometer
+
+### /as disable (/as hide)
+Hide the speedometer
+
+### /as help
+Display a help menu. The help menu will only show commands that you have permission to run.
 
 ### /as setunits (unitstr)
 Set the displayed speed unit to one of the listed units:
@@ -43,12 +55,6 @@ Meant for admins only. Prints out internal contents and each player's settings
 
 ### /as reload
 Meant for admins only. Reloads the configuration from config.yml
-
-### /as forceshutdown
-Meant for admins only. Physically disables plugin by shutting off Event Listener. If you are experiencing performance issues, run this
-
-### /as restart
-Meant for admins only. Re-registers the Listener after it has been shut down.
 
 ### A Notice about BSTATS
 This plugin uses Bstats for analytical purposes. If you wish to opt out of this (please don't), please read bstats documentation.
