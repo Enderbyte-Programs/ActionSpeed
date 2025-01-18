@@ -1,5 +1,5 @@
 # ActionSpeed Documentation
-For version 1.5.x
+For version 1.4.x
 
 ## Installing the plugin
 
@@ -8,8 +8,6 @@ Like all Minecraft plugins, paste the JAR file into the server plugin folder (SE
 ## Configuration
 
 As of version 1.4, there is a configuration file with two fields. You can find this file in `SERVER/plugins/ActionSpeed/config.yml`. The two nodes are `runinvehicles` and `destroyplayerdataonleave`. `runinvehicles` sets if the plugin is allowed to display speeds while in vehicles. Since OnVehicleMove may call more frequently than OnPlayerMove, disabling this may improve performance if you are having issues. `destroyplayerdataonleave` is defaulted to OFF. If set to TRUE, a player's speedometer settings will be deleted when they leave the game.
-
-In version 1.5.2, another configuration key was added: `onbydefault` (default TRUE). If enabled, new players will automatically have the speedometer enabled. 
 
 Configuration may be updated with `/as reload`
 
@@ -24,14 +22,8 @@ Actionspeed has one command with aliases. The commands are `/actionspeed`, `/spe
 ### /as 
 Displays Plugin version information
 
-### /as enable (/as show)
-Show the speedometer
-
-### /as disable (/as hide)
-Hide the speedometer
-
-### /as help
-Display a help menu. The help menu will only show commands that you have permission to run.
+### /as toggle
+Toggle on and off the speedometer
 
 ### /as setunits (unitstr)
 Set the displayed speed unit to one of the listed units:

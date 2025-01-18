@@ -1,13 +1,17 @@
 package enderbyteprograms.actionspeed;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.ChatColor;
 
 public class PlayerData {
     public String username;
     public int unit = 0;
     public String unitstr = "m/s";
     public boolean allowcolour = true;
-    public Location lastMoveLocation;//Purpose of this: If the user hasn't moved physically and
+    public Location lastMoveLocation = null;//Purpose of this: If the user hasn't moved physically and
     public boolean active = ActionSpeedMain.CONFIG.getBoolean("onbydefault");
 
     public PlayerData(String name) {
@@ -37,5 +41,9 @@ public class PlayerData {
         } else if (unit == 6) {
             unitstr = "kt";
         }
+    }
+
+    public void SendActionBarMessage(String message) {
+        Bukkit.getPlayer(this.username).spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
     }
 }

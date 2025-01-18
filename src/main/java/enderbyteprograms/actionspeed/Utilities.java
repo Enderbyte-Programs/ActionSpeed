@@ -24,10 +24,6 @@ public class Utilities {
         //adhelp is for admins
         String adhelp = "/as dumpdata\n" +
                 "    Output all stored data, including player configurations\n" +
-                "/as forceshutdown\n" +
-                "    De-register event listeners and shutdown the plugin (useful in emergencies)\n" +
-                "/as restart\n" +
-                "    Restart the plugin after forceshutdown\n" +
                 "/as reload\n" +
                 "    Reload plugin configuration";
         sender.sendMessage(nadhelp);
@@ -93,7 +89,7 @@ public class Utilities {
         if (converter == 0) {
             return m_s;
         } else if (converter == 1) {
-            return m_s * (double)3;
+            return m_s * (double)3.6;
         } else if (converter == 2) {
             return m_s * (double)2.237;
         } else if (converter == 3) {

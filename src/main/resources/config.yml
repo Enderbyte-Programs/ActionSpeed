@@ -1,6 +1,7 @@
 runinvehicles: true # Calculate speed when player is in a vehicle. Disabling this MAY improve performance if you are having problems
 destroyplayerdataonleave: false #Delete a player's customization settings when they leave
 onbydefault: true #Will the speedometer be on by default?
+showzeros: true #Will the player be sent "0 unit" if they aren't moving? If disabled, no message will be sent
 
 ### DATA STORAGE BEGINS HERE. PLEASE DO NOT MODIFY ANY OF THE BELOW DATA
 
