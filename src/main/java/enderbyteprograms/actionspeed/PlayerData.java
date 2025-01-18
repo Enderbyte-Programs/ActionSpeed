@@ -40,6 +40,10 @@ public class PlayerData {
             unitstr = "mi/min";
         } else if (unit == 6) {
             unitstr = "kt";
+        } else if (unit == 7) {
+            unitstr = "mach";
+        } else if (unit == 8) {
+            unitstr = "kJ";
         }
     }
 

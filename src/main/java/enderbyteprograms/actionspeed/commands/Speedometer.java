@@ -163,6 +163,18 @@ public class Speedometer implements CommandExecutor {
                     ActionSpeedData.Players.put(username,pd);
                     commandSender.sendMessage("Changed to knots");
                     return true;
+                }else if (strings[1].equals("mach")) {
+                    pd.unit = 7;
+                    pd.UpdateUnits();
+                    ActionSpeedData.Players.put(username,pd);
+                    commandSender.sendMessage("Changed to mach");
+                    return true;
+                }else if (strings[1].equals("kineticenergy")) {
+                    pd.unit = 8;
+                    pd.UpdateUnits();
+                    ActionSpeedData.Players.put(username,pd);
+                    commandSender.sendMessage("Changed to kinetic energy (kilojoules)");
+                    return true;
                 }
             }
             else if (strings[0].equals("allowcolour")) {

@@ -33,7 +33,7 @@ public class SpeedometerTabCompleter implements TabCompleter {
             }
             if (Arrays.asList(strings).contains("setunits")) {
 
-                List<String> nl = Arrays.asList("m/s", "km/h", "mi/h", "m/min", "ft/s", "mi/min", "knots");
+                List<String> nl = Arrays.asList("m/s", "km/h", "mi/h", "m/min", "ft/s", "mi/min", "knots","mach","kineticenergy");
 
                 return Utilities.comp_startswith(nl,strings[strings.length-1]);
             } else if (Arrays.asList(strings).contains("allowcolour")) {

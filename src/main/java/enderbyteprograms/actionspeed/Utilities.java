@@ -100,6 +100,12 @@ public class Utilities {
             return m_s * 0.037;
         } else if (converter == 6) {
             return m_s * 1.94;
+        } else if (converter == 7) {
+            return m_s * ((double) 1 /343);
+        } else if (converter == 8) {
+            //According to reddit, steve ways 342kg
+            //Ek = 1/2 m v^2
+            return Math.pow(m_s,2) * 0.5 * 342 * 0.001;//Return in kilojoules
         }
         else {
             return m_s;
