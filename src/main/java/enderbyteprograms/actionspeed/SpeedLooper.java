@@ -14,6 +14,9 @@ public class SpeedLooper extends BukkitRunnable {
                 //Ignore it for now and wait for join event handler to finish up
             } else {
                 PlayerData assocdata = ActionSpeedData.Players.get(player.getDisplayName());
+                if (!assocdata.active) {
+                    continue;//Don't waste time calculating for those who are not active
+                }
                 Location l = player.getLocation();
                 if (assocdata.lastMoveLocation == null) {
                     assocdata.SendActionBarMessage("0 "+assocdata.unitstr);
@@ -26,7 +29,12 @@ public class SpeedLooper extends BukkitRunnable {
                             assocdata.SendActionBarMessage("0 "+assocdata.unitstr);
                         }
                     } else {
-                        double dist = l.distance(previouslocation);
+                        double dist;
+                        try {
+                            dist = l.distance(previouslocation);
+                        } catch (Exception e) {
+                            dist = 0;
+                        }
                         assocdata.lastMoveLocation = l;
                         dist *= 10;//Fired 10 times per second
                         ChatColor tcol = Utilities.speedColour(dist,assocdata);
