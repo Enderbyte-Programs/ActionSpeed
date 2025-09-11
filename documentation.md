@@ -1,5 +1,5 @@
 # ActionSpeed Documentation
-For version 1.6 or newer
+For version 1.8 or newer
 
 ## Installing the plugin
 
@@ -50,11 +50,5 @@ Set the displayed speed unit to one of the listed units:
 ### /as allowcolour (yes/no)
 Enable or disable speedometer colour
 
-### /as dumpdata
-Meant for admins only. Prints out internal contents and each player's settings
-
 ### /as reload
 Meant for admins only. Reloads the configuration from config.yml
-
-### A Notice about BSTATS
-This plugin uses Bstats for analytical purposes. If you wish to opt out of this (please don't), please read bstats documentation.
