@@ -62,8 +62,11 @@ public class ActionSpeedMain extends JavaPlugin {
     }
     private void WritePlayerData() {
         ActionSpeedData.MainDataTable.SetAutoSave(false);
-        ActionSpeedData.MainDataTable.Clear();
+       // ActionSpeedData.MainDataTable.Clear();
         for (PlayerData pd:ActionSpeedData.Players.values()) {
+            if (ActionSpeedData.MainDataTable.ExistsWhere("uuid",pd.UUID)){
+                ActionSpeedData.MainDataTable.DeleteWhere("uuid",pd.UUID);
+            }
             ActionSpeedData.MainDataTable.Insert(
                     new HashMap<String,Object>(Map.of(
                             "username",pd.username,

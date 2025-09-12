@@ -188,7 +188,7 @@ public class Speedometer implements CommandExecutor {
                     commandSender.sendMessage("Please provide \"yes\" or \"no\"");
                     return false;
                 }
-                PlayerData pd = ActionSpeedData.Players.get(((Player)commandSender).getDisplayName());
+                PlayerData pd = ActionSpeedData.Players.get(((Player)commandSender).getUniqueId().toString());
                 if (strings[1].toLowerCase().equals("yes") || strings[1].toLowerCase().equals("true")) {
                     pd.allowcolour = true;
                     ActionSpeedData.Players.put(pd.UUID,pd);

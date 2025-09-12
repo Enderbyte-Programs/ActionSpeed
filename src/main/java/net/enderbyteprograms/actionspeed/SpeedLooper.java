@@ -10,10 +10,10 @@ public class SpeedLooper extends BukkitRunnable {
     @Override
     public void run() {
         for (Player player:Bukkit.getOnlinePlayers()) {
-            if (!ActionSpeedData.Players.containsKey(player.getDisplayName())) {
+            if (!ActionSpeedData.Players.containsKey(player.getUniqueId().toString())) {
                 //Ignore it for now and wait for join event handler to finish up
             } else {
-                PlayerData assocdata = ActionSpeedData.Players.get(player.getDisplayName());
+                PlayerData assocdata = ActionSpeedData.Players.get(player.getUniqueId().toString());
                 if (!assocdata.active) {
                     continue;//Don't waste time calculating for those who are not active
                 }

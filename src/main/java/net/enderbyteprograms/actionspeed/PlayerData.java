@@ -39,7 +39,8 @@ public class PlayerData {
         username = (String)ingress.get("username");
         allowcolour = (boolean)ingress.get("colour");
         active = (boolean)ingress.get("active");
-        unit = (int)ingress.get("unit");
+        unit = (int)Double.parseDouble(ingress.get("unit").toString());
+        UpdateUnits();
     }
 
     public PlayerData(Player p) {

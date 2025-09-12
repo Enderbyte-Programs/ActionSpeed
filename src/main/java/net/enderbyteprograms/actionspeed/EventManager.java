@@ -16,9 +16,24 @@ public class EventManager implements Listener {
             //Check if unmigrated
 
             boolean ismigrated = false;
-            for (HashMap<String,Object> unmigratedrows:ActionSpeedData.MainDataTable.GetWhere("migrated",false))
+            HashMap<String,Object> rowtu = null;
+            for (HashMap<String,Object> unmigratedrows:ActionSpeedData.MainDataTable.GetWhere("migrated",false)) {
+                if (unmigratedrows.get("username").equals(event.getPlayer().getDisplayName())) {
+                    rowtu = unmigratedrows;
+                    ismigrated = true;
+                    break;
+                }
+            }
 
-            ActionSpeedData.Players.put(uuid,new PlayerData(event.getPlayer()));
+            if (ismigrated) {
+                ActionSpeedData.MainDataTable.DeleteWhere("username",rowtu.get("username"));
+                rowtu.put("uuid",uuid);
+                ActionSpeedData.MainDataTable.Insert(rowtu);
+                ActionSpeedData.Players.put(uuid,new PlayerData(rowtu));
+            } else {
+
+                ActionSpeedData.Players.put(uuid, new PlayerData(event.getPlayer()));
+            }
             //Add a new empty player data set
         }
     }
