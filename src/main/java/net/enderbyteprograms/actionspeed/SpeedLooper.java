@@ -36,7 +36,7 @@ public class SpeedLooper extends BukkitRunnable {
                             dist = 0;
                         }
                         assocdata.lastMoveLocation = l;
-                        dist *= 10;//Fired 10 times per second
+                        dist *= ActionSpeedData.SampleRate;//Fired 10 times per second
                         ChatColor tcol = Utilities.speedColour(dist,assocdata);
                         double converteddist = Utilities.round(Utilities.convertspeed(assocdata.unit,dist),1);
                         String finalstr = String.valueOf(converteddist) + " " + assocdata.unitstr;

@@ -33,17 +33,38 @@ public class ActionSpeedMain extends JavaPlugin {
         //Set up configs
         this.saveDefaultConfig(); //APparently this won't overwrite again
         CONFIG = this.getConfig();//Reduce load on Event calls NOTE: Directly call config on write operations
-        if (!CONFIG.contains("onbydefault")) {
+        if (!CONFIG.contains("onbydefault",true)) {
             this.getConfig().set("onbydefault",true);
         }
-        if (!CONFIG.contains("showzeros")) {
+        if (!CONFIG.contains("showzeros",true)) {
             this.getConfig().set("showzeros",true);
         }
+        if (!CONFIG.contains("sample-rate",true)) {
+            this.getConfig().set("sample-rate",10);
+
+        }
+        this.saveConfig();
+        CONFIG = this.getConfig();
+        //Load sample rate
+        double rawsamplerate = CONFIG.getDouble("sample-rate");
+        if (rawsamplerate > 20) {
+            this.getLogger().warning("The maximum sample rate is 20hz.");
+            rawsamplerate = 20;
+        }
+        double tickcount = 20D/rawsamplerate;
+        long newtickcount = (long)tickcount;
+        if ((tickcount % 1D) != 0) {
+            newtickcount = Math.round(tickcount);
+            this.getLogger().warning("The requested sample rate is not precisely possible. It has been rounded to "+Double.toString(20D /newtickcount)+"hz from "+ Double.toString(rawsamplerate) + "hz.");
+        }
+        this.getLogger().info("Samples will be conducted every "+Long.toString(newtickcount) + " ticks.");
+        ActionSpeedData.TickRate = newtickcount;
+        ActionSpeedData.SampleRate = rawsamplerate;
 
         ReadPlayerData();
 
         SpeedLooper mainloop = new SpeedLooper();
-        mainloop.runTaskTimer(this,1L,2L);//1L delay may help this not start until the server is properly online and ticking
+        mainloop.runTaskTimer(this,1L,newtickcount);//1L delay may help this not start until the server is properly online and ticking
         this.MAINLOOP = mainloop;
 
         int pluginid = 19237;

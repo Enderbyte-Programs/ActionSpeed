@@ -1,3 +1,5 @@
 destroyplayerdataonleave: false #Delete a player's customization settings when they leave
 onbydefault: true #Will the speedometer be on by default?
 showzeros: true #Will the player be sent "0 unit" if they aren't moving? If disabled, no message will be sent
+
+sample-rate: 10 #How many hertz should the sample rate be? 10hz (default) is 10 times per second. Maximum rate is 20hz
